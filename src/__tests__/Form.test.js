@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Form from "../components/Form";
+import { Form } from "../components/Form";
 describe("testing Form component", () => {
   let wrapper;
 
@@ -21,17 +21,18 @@ describe("testing Form component", () => {
   it("should have a input tag for loan amount", () => {
     wrapper = wrapper.find("[name='loan_amount']");
     expect(
-      wrapper.contains(<input type="text" name="loan_amount" />)
+      wrapper.containsMatchingElement(<input type="text" name="loan_amount" />)
     ).toBeTruthy();
   });
   it("should have an Area field", () => {
-    wrapper = wrapper.find("#area");
+    wrapper = wrapper.find("[name='area']");
     expect(
-      wrapper.contains(
-        <select id="area">
-          <option value="hkisland">香港島</option>
-          <option value="kowloon">九龍</option>
-          <option value="newterrories">新界</option>
+      wrapper.containsMatchingElement(
+        <select name="area">
+          <option value="請選擇區域">請選擇區域</option>
+          <option value="香港島">香港島</option>
+          <option value="九龍">九龍</option>
+          <option value="新界">新界</option>
         </select>
       )
     ).toBeTruthy();
@@ -42,12 +43,14 @@ describe("testing Form component", () => {
   });
   it("should have street field", () => {
     wrapper = wrapper.find("[name='street']");
-    expect(wrapper.contains(<input type="text" name="street" />)).toBeTruthy();
+    expect(
+      wrapper.containsMatchingElement(<input type="text" name="street" />)
+    ).toBeTruthy();
   });
   it("should have building field", () => {
     wrapper = wrapper.find("[name='building']");
     expect(
-      wrapper.contains(<input type="text" name="building" />)
+      wrapper.containsMatchingElement(<input type="text" name="building" />)
     ).toBeTruthy();
   });
   it("should have floor field", () => {
@@ -58,13 +61,16 @@ describe("testing Form component", () => {
   });
   it("should have room field", () => {
     wrapper = wrapper.find("[name='room']");
-    expect(wrapper.contains(<input type="text" name="room" />)).toBeTruthy();
+    expect(
+      wrapper.containsMatchingElement(<input type="text" name="room" />)
+    ).toBeTruthy();
   });
   it("should have channel field", () => {
-    wrapper = wrapper.find("#channel");
+    wrapper = wrapper.find("[name='channel']");
     expect(
       wrapper.containsMatchingElement(
-        <select id="channel">
+        <select name="channel">
+          <option value="no-selected">從那個途徑得知我們</option>
           <option value="facebook">Facebook</option>
           <option value="google">Google</option>
           <option value="referral">朋友介紹</option>
@@ -80,10 +86,12 @@ describe("testing Form component", () => {
       )
     ).toBeTruthy();
   });
-  it("should have I agree checkbox", () => {
+  it("should have an agree checkbox", () => {
     wrapper = wrapper.find("[type='checkbox'][name='agreement']");
     expect(
-      wrapper.contains(<input type="checkbox" name="agreement" value="true" />)
+      wrapper.containsMatchingElement(
+        <input type="checkbox" name="agreement" value="true" />
+      )
     ).toBeTruthy();
   });
   it("should have a submit button", () => {
