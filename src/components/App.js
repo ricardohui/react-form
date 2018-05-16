@@ -1,18 +1,22 @@
 import React, { Component } from "react";
-
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Link,
+  Redirect
+} from "react-router-dom";
 import logo from "./logo.svg";
 import "./style/App.css";
 import Form from "./Form";
+import Success from "./Success";
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">貸款申請競價</h1>
-        </header>
-        <Form />
+        <Route exact path="/" component={Form} />
+        <Route path="/success" component={Success} />
       </div>
     );
   }
